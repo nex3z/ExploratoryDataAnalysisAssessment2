@@ -9,7 +9,8 @@ emissions <- aggregate(Emissions ~ year + type, data=baltimoreData, sum)
 
 qplot(year, Emissions, data = emissions, colour = type, geom=c("point", "line"),
       xlab="Year", ylab="Emissions (tons)", 
-      main="Total PM2.5 Emissions of Baltimore by Type")
+      main="Total PM2.5 Emissions in Baltimore by Type") + 
+  theme_bw(base_family = "Times")
 
 dev.copy(png, file="plot3.png", height=480, width=480)
 dev.off()
