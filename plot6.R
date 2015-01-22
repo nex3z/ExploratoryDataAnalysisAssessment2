@@ -10,16 +10,14 @@ motorData <- data[data$SCC %in% SCC[motorSCC, ]$SCC, ]
 
 emissions <- aggregate(Emissions ~ year + fips, data=motorData, sum)
 
-colors <- "darkgreen"
-symbols <- c(1:2)
-linetype <- c(1:2)
-key <- list(space="right", text=list(c("Los Angeles County", "Baltimore City")), 
-            points=list(pch=symbols, col=symbols)) 
+lbl <- c(1:2)
+key <- list(text=list(c("Los Angeles County", "Baltimore City")), 
+            points=list(pch=lbl, col=lbl)) 
 
-xyplot(Emissions~year, data=emissions, group=fips, type = "o", key=key, 
+xyplot(Emissions~year, data=emissions, group=fips, type = c("o"), pch=lbl, col=lbl, key=key, 
        main="Total PM2.5 Emissions from Moto Vehicle", 
-       xlab="Year", ylab="Emissions (tons)")
-
+       xlab="Year", ylab="Emissions (tons)", 
+       scales=list(x=list(at = seq(1999, 2008, by=3))))
 
 dev.copy(png, file="plot6.png", height=480, width=480)
 dev.off()
